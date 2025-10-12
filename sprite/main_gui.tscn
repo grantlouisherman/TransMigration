@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://crb8n20tecrck"]
+
+[node name="MainGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bottom" type="Label" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 65.0
+offset_right = 93.0
+offset_bottom = 88.0
+text = "Bottom"
+
+[node name="SideBar" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 7.0
+offset_right = 59.0
+offset_bottom = 30.0
+text = "SideBar"

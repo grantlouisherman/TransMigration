@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dle7lu5nkl4fv"]
+
+[ext_resource type="Texture2D" uid="uid://b3idcysiqxx23" path="res://resource/curses_vector_24x36.png" id="1_g17ia"]
+[ext_resource type="Script" path="res://sprite/wall.gd" id="2_rijtq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwkj2"]
+atlas = ExtResource("1_g17ia")
+region = Rect2(72, 72, 24, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi13q"]
+size = Vector2(23, 30)
+
+[node name="Wall" type="Sprite2D"]
+position = Vector2(208, 128)
+texture = SubResource("AtlasTexture_xwkj2")
+script = ExtResource("2_rijtq")
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_qi13q")

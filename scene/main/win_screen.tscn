@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bh3qc68jqviv5"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(261, 125)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 141.0
+offset_bottom = 106.0
+text = "You WINNNN"
+fit_content = true
