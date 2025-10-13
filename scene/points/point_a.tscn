@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://fkx7vp44rkx8"]
+
+[ext_resource type="Texture2D" uid="uid://bd5my6tohaiiq" path="res://resource/points.png" id="1_h51kn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nuyj"]
+atlas = ExtResource("1_h51kn")
+region = Rect2(16, 40, 56, 56)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0efx8"]
+radius = 25.6125
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Red" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Red"]
+position = Vector2(576, 322)
+scale = Vector2(1.105, 1)
+texture = SubResource("AtlasTexture_7nuyj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
+position = Vector2(574, 321)
+shape = SubResource("CircleShape2D_0efx8")

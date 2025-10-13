@@ -1,45 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxex6ljv1ufox"]
+[gd_scene load_steps=5 format=3 uid="uid://bxex6ljv1ufox"]
 
 [ext_resource type="Script" path="res://scene/main/InitWorld.gd" id="1_cu24e"]
 [ext_resource type="Script" path="res://scene/main/main_scene.gd" id="1_lr2yx"]
-[ext_resource type="Texture2D" uid="uid://bd5my6tohaiiq" path="res://resource/points.png" id="8_k6hb1"]
-[ext_resource type="Texture2D" uid="uid://c7bxdamu3bnr4" path="res://resource/End_Circle.png" id="9_588as"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_accag"]
-atlas = ExtResource("8_k6hb1")
-region = Rect2(16, 40, 56, 56)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lpbaf"]
-radius = 25.6125
+[ext_resource type="PackedScene" uid="uid://fkx7vp44rkx8" path="res://scene/points/point_a.tscn" id="4_sceke"]
+[ext_resource type="PackedScene" uid="uid://cfnpxlf17rjg4" path="res://scene/points/point_b.tscn" id="4_vkjs4"]
 
 [node name="MainScene" type="Node2D" groups=["pc"]]
 script = ExtResource("1_lr2yx")
 
 [node name="InitWorld" type="Node2D" parent="."]
 script = ExtResource("1_cu24e")
-
-[node name="Red" type="StaticBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Red"]
-position = Vector2(576, 322)
-scale = Vector2(1.105, 1)
-texture = SubResource("AtlasTexture_accag")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
-position = Vector2(574, 321)
-shape = SubResource("CircleShape2D_lpbaf")
-
-[node name="Blue" type="StaticBody2D" parent="."]
-position = Vector2(-418, 254)
-
-[node name="Sprite2D" type="Sprite2D" parent="Blue"]
-position = Vector2(576, 322)
-scale = Vector2(1.105, 1)
-texture = ExtResource("9_588as")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue"]
-position = Vector2(574, 321)
-shape = SubResource("CircleShape2D_lpbaf")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
@@ -49,3 +19,7 @@ offset_right = 716.0
 offset_bottom = 621.0
 text = "You winnnnnnn"
 fit_content = true
+
+[node name="Point_A" parent="." instance=ExtResource("4_sceke")]
+
+[node name="Point B" parent="." instance=ExtResource("4_vkjs4")]

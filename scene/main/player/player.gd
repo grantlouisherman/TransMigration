@@ -6,7 +6,7 @@ signal player_moved
 signal win_cond
 var is_touched_red = false
 var is_touched_blue = false
-var win_screen = preload("res://scene/main/win_screen.tscn").instantiate()
+var win_screen = preload("res://GUI/win_screen.tscn").instantiate()
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.as_text() == "Q":

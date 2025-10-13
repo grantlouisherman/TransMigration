@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://blx1xf337e1qd"]
 
-[ext_resource type="Script" path="res://scene/main/player.gd" id="1_phn8e"]
+[ext_resource type="Script" path="res://scene/main/player/player.gd" id="1_phn8e"]
 [ext_resource type="Texture2D" uid="uid://b3idcysiqxx23" path="res://resource/curses_vector_24x36.png" id="2_w503y"]
-[ext_resource type="Script" path="res://scene/main/player_sprite.gd" id="3_f3hh4"]
-[ext_resource type="Script" path="res://scene/main/player_collision_shape.gd" id="4_h8g4v"]
+[ext_resource type="Script" path="res://scene/main/player/player_sprite.gd" id="3_f3hh4"]
+[ext_resource type="Script" path="res://scene/main/player/player_collision_shape.gd" id="4_h8g4v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0h0rb"]
 atlas = ExtResource("2_w503y")

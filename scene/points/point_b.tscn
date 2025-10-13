@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfnpxlf17rjg4"]
+
+[ext_resource type="Texture2D" uid="uid://c7bxdamu3bnr4" path="res://resource/End_Circle.png" id="1_o5b0n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k2ljm"]
+radius = 25.6125
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Blue" type="StaticBody2D" parent="."]
+position = Vector2(-418, 254)
+
+[node name="Sprite2D" type="Sprite2D" parent="Blue"]
+position = Vector2(576, 322)
+scale = Vector2(1.105, 1)
+texture = ExtResource("1_o5b0n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue"]
+position = Vector2(574, 321)
+shape = SubResource("CircleShape2D_k2ljm")
