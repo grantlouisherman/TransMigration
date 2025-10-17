@@ -10,6 +10,7 @@ region = Rect2(16, 40, 56, 56)
 radius = 25.6125
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(15, -106)
 
 [node name="Red" type="StaticBody2D" parent="."]
 
@@ -19,5 +20,5 @@ scale = Vector2(1.105, 1)
 texture = SubResource("AtlasTexture_7nuyj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
-position = Vector2(574, 321)
+position = Vector2(574, 328)
 shape = SubResource("CircleShape2D_0efx8")

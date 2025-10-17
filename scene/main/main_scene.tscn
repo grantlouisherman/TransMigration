@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxex6ljv1ufox"]
+[gd_scene load_steps=7 format=3 uid="uid://bxex6ljv1ufox"]
 
 [ext_resource type="Script" path="res://scene/main/InitWorld.gd" id="1_cu24e"]
 [ext_resource type="Script" path="res://scene/main/main_scene.gd" id="1_lr2yx"]
 [ext_resource type="PackedScene" uid="uid://fkx7vp44rkx8" path="res://scene/points/point_a.tscn" id="4_sceke"]
 [ext_resource type="PackedScene" uid="uid://cfnpxlf17rjg4" path="res://scene/points/point_b.tscn" id="4_vkjs4"]
+[ext_resource type="PackedScene" uid="uid://ducumxe5h0upf" path="res://scene/main/Boundary.tscn" id="5_t7cbe"]
+[ext_resource type="PackedScene" uid="uid://4st4tb4a22vd" path="res://scene/main/Boundary_vertical.tscn" id="6_dnnuh"]
 
 [node name="MainScene" type="Node2D" groups=["pc"]]
 script = ExtResource("1_lr2yx")
@@ -21,5 +23,18 @@ text = "You winnnnnnn"
 fit_content = true
 
 [node name="Point_A" parent="." instance=ExtResource("4_sceke")]
+position = Vector2(76, 118)
 
 [node name="Point B" parent="." instance=ExtResource("4_vkjs4")]
+position = Vector2(26, -142)
+
+[node name="Boundary_1" parent="." instance=ExtResource("5_t7cbe")]
+
+[node name="Boundary_2" parent="." instance=ExtResource("5_t7cbe")]
+position = Vector2(4, 503)
+
+[node name="Boundary_3" parent="." instance=ExtResource("6_dnnuh")]
+position = Vector2(-6, 17)
+
+[node name="Boundary_4" parent="." instance=ExtResource("6_dnnuh")]
+position = Vector2(810, 6)

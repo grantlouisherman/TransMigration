@@ -25,14 +25,16 @@ func _ready() -> void:
 	var viewport_width = viewport_size.x / 2
 	var viewport_height = viewport_size.y /2
 	print("WIDTH: ", viewport_width,"  Height: ",  viewport_height)
-	_create_dungeon(viewport_width/2, viewport_height/2)
+	_create_dungeon(viewport_width/2, viewport_height/2, Floor, GroupName.DUNGEON, false)
 	_create_spawn_point(viewport_width, viewport_height)
+	_create_dungeon(viewport_width/2, viewport_height/2, Wall, GroupName.DUNGEON, true)
+
 	
-func _process(delta: float) -> void:
-	cooldown -= delta
-	if cooldown <= 0:
-		_create_dungeon_walls()
-		cooldown = 1.0
+#func _process(delta: float) -> void:
+	#cooldown -= delta
+	#if cooldown <= 0:
+		#_create_dungeon_walls()
+		#cooldown = 1.0
 	
 	
 func _create_spawn_point(max_x: int, max_y: int):
@@ -56,27 +58,17 @@ func _create_sprite(
 	new_sprite.add_to_group(group)
 	add_child(new_sprite)
 	sprite_created.emit(new_sprite)
-#
-#
-func _create_dungeon_walls():
-	for i in range(100):
-		var rand_x = rng.randf_range(DungeonSize.MAX_X*-1, DungeonSize.MAX_X)
-		var rand_y = rng.randf_range(DungeonSize.MAX_Y*-1,  DungeonSize.MAX_Y )
-		var row = rand_x
-		var column = rand_y
-		_create_sprite(Wall, 
-			GroupName.DUNGEON,
-			row,
-			column,
-			DungeonSize.MAX_X,
-			DungeonSize.MAX_Y)
-	
-#
-func _create_dungeon(width:int, height:int):
+
+func _create_dungeon(width:int, height:int, prefab: PackedScene, group: String, doRandom: bool):
 	var xPos = 0
 	var yPos = 0
 	while yPos < height:
-		_create_sprite(Floor, GroupName.DUNGEON, xPos, yPos, 1, 1)
+		var rand_number = rng.randi_range(0,5)
+		if doRandom:
+			if rand_number == 1:
+				_create_sprite(prefab, group, xPos, yPos, 1, 1)
+		else:
+			_create_sprite(prefab, group, xPos, yPos, 1, 1)
 		xPos+=1
 		if xPos == spawn_point_x:
 			xPos+=1
