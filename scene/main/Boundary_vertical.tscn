@@ -3,7 +3,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iy2qw"]
 size = Vector2(39, 679)
 
-[node name="Node2D" type="Area2D"]
+[node name="Node2D" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9.5, 329.5)

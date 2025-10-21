@@ -7,8 +7,11 @@ size = Vector2(807, 20)
 
 [node name="Boundary" type="Node2D" parent="."]
 
-[node name="RigidBody2D" type="Area2D" parent="Boundary"]
+[node name="RigidBody2D" type="StaticBody2D" parent="Boundary"]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/RigidBody2D"]
+light_mask = 7
+visibility_layer = 7
 position = Vector2(393.5, 0)
 shape = SubResource("RectangleShape2D_77gu7")

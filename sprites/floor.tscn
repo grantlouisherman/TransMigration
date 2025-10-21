@@ -4,7 +4,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xeeqt"]
 atlas = ExtResource("1_brhyf")
-region = Rect2(224, 552, 8, 8)
+region = Rect2(344, 544, 8, 24)
 
 [node name="Floor" type="Sprite2D"]
 position = Vector2(92, 17)

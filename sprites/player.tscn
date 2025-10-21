@@ -7,7 +7,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0h0rb"]
 atlas = ExtResource("2_w503y")
-region = Rect2(0, 144, 24, 32)
+region = Rect2(192, 0, 24, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifg1p"]
 size = Vector2(42, 53)
@@ -39,6 +39,7 @@ position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_m5rse")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
