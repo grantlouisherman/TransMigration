@@ -4,6 +4,8 @@ signal player_shrink
 signal player_grow
 signal player_moved
 signal win_cond
+signal red_touched
+signal blue_touched
 var is_touched_red = false
 var is_touched_blue = false
 var win_screen = preload("res://GUI/win_screen.tscn").instantiate()
@@ -31,8 +33,10 @@ func _physics_process(delta):
 		var collision_object = obj.get_collider().to_string()
 		if collision_object.find("Red") != -1:
 			is_touched_red = true
+			red_touched.emit()
 		if collision_object.find("Blue") != -1:
 			is_touched_blue = true
+			blue_touched.emit()
 	if is_touched_blue and is_touched_red:
 		win_cond.emit()
 		

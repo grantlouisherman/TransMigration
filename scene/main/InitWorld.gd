@@ -78,4 +78,26 @@ func _create_dungeon(width:int, height:int, prefab: PackedScene, group: String, 
 			if yPos == spawn_pont_y:
 				yPos+=1
 
-	
+func _create_dungeon_walls():
+	#if last_wall_location == null:
+	#var rand_x = rng.randf_range(DungeonSize.MAX_X*-1, DungeonSize.MAX_X)
+	#var rand_y = rng.randf_range(DungeonSize.MAX_Y*-1,  DungeonSize.MAX_Y )
+	#var row = rand_x
+	#var column = rand_y
+	#_create_sprite(Wall, 
+			#GroupName.DUNGEON,
+			#row,
+			#column,
+			#DungeonSize.MAX_X,
+			#DungeonSize.MAX_Y)
+	for i in range(100):
+		var rand_x = rng.randf_range(DungeonSize.MAX_X*-1, DungeonSize.MAX_X)
+		var rand_y = rng.randf_range(DungeonSize.MAX_Y*-1,  DungeonSize.MAX_Y )
+		var row = rand_x
+		var column = rand_y
+		_create_sprite(Wall, 
+			GroupName.DUNGEON,
+			row,
+			column,
+			DungeonSize.MAX_X,
+			DungeonSize.MAX_Y)
