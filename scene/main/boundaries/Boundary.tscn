@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://ducumxe5h0upf"]
 
-[ext_resource type="Script" path="res://scene/main/boundary.gd" id="1_2nl0r"]
+[ext_resource type="Script" path="res://scene/main/boundaries/horz_boundary_collision_shape_2d.gd" id="1_nnv8q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_77gu7"]
 size = Vector2(807, 20)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_2nl0r")
 
 [node name="Boundary" type="Node2D" parent="."]
 
@@ -18,3 +17,4 @@ light_mask = 7
 visibility_layer = 7
 position = Vector2(393.5, 0)
 shape = SubResource("RectangleShape2D_77gu7")
+script = ExtResource("1_nnv8q")

@@ -4,7 +4,7 @@ signal sprite_created(new_sprite: Sprite2D)
 
 var ConvertCoord = preload("res://library/ConvertCoord.gd").new()
 var GroupName = preload("res://library/GroupName.gd").new()
-var Main = preload("res://scene/main/main_scene.gd").new()
+var Main = preload("res://scene/main/scripts/main_scene.gd").new()
 var DungeonSize = preload("res://library/DungeonSize.gd").new()
 var Player = preload("res://sprites/player.tscn")
 var Wall = preload("res://sprites/wall.tscn")
@@ -12,6 +12,9 @@ var Floor = preload("res://sprites/floor.tscn")
 var Dwarf = preload("res://sprites/dwarf.tscn")
 var ArrowX = preload("res://sprites/arrow_x.tscn")
 var ArrowY = preload("res://sprites/arrow_y.tscn")
+var PointA = preload("res://scene/points/point_a.tscn")
+var PointB = preload("res://scene/points/point_b.tscn")
+var Boundary = preload("res://scene/main/boundaries/Boundary.tscn")
 # Called when the node enters the scene tree for the first time.
 var rng = RandomNumberGenerator.new()
 var last_wall_location
@@ -25,10 +28,17 @@ func _ready() -> void:
 	var viewport_width = viewport_size.x / 2
 	var viewport_height = viewport_size.y /2
 	print("WIDTH: ", viewport_width,"  Height: ",  viewport_height)
-	_create_dungeon(viewport_width/2, viewport_height/2, Floor, GroupName.DUNGEON, false)
-	_create_spawn_point(viewport_width, viewport_height)
-	_create_dungeon(viewport_width/2, viewport_height/2, Wall, GroupName.DUNGEON, true)
+	# Player Spawn
+	_create_spawn_point(viewport_width, viewport_height, Player)
 
+	# Point A + B Spawn
+	_create_spawn_point(viewport_width, viewport_height, PointA)
+	_create_spawn_point(viewport_width, viewport_height, PointB)
+	
+	# Create Dungeon Floor && Walls
+	_create_dungeon(viewport_width/2, viewport_height/2, Floor, GroupName.DUNGEON, false)
+	_create_dungeon(viewport_width/2, viewport_height/2, Wall, GroupName.DUNGEON, true)
+	_create_horizontal_boundary()
 	
 #func _process(delta: float) -> void:
 	#cooldown -= delta
@@ -36,14 +46,17 @@ func _ready() -> void:
 		#_create_dungeon_walls()
 		#cooldown = 1.0
 	
-	
-func _create_spawn_point(max_x: int, max_y: int):
+
+func _create_horizontal_boundary():
+	_create_sprite(Boundary, "Boundaries", 0, 0)
+
+func _create_spawn_point(max_x: int, max_y: int, prefab: PackedScene):
 		var rand_x = rng.randf_range(0, max_x)
 		var rand_y = rng.randf_range(0,  max_y )
 		print("spawn x   :", rand_x, " spawn y  ", rand_y)
 		spawn_point_x = rand_x
 		spawn_pont_y = rand_y
-		_create_sprite(Player, "SpawnPoint", 0, 10, 1, 1)
+		_create_sprite(prefab, "SpawnPoint", 0, 10, 1, 1)
 		
 		
 func _create_sprite(

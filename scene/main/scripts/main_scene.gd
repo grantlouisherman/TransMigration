@@ -12,11 +12,13 @@ func _ready() -> void:
 	#var button_node = get_node("Player")
 	#print(button_node)
 func _won() -> void:
-	print("WINNER")
+	#print("WINNER")
 	move_walls.emit()
 
 func _red_touched():
-	print("READ")
+	#print("READ")
+	pass
 
 func _blue_touched():
-	print("BLUE")
+	#print("BLUE")
+	pass
