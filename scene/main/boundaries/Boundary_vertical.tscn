@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://4st4tb4a22vd"]
+[gd_scene load_steps=3 format=3 uid="uid://4st4tb4a22vd"]
+
+[ext_resource type="Script" path="res://scene/main/boundaries/vertical_boundary_collision_shape.gd" id="1_fieod"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iy2qw"]
 size = Vector2(39, 679)
@@ -8,3 +10,4 @@ size = Vector2(39, 679)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9.5, 329.5)
 shape = SubResource("RectangleShape2D_iy2qw")
+script = ExtResource("1_fieod")

@@ -15,6 +15,7 @@ var ArrowY = preload("res://sprites/arrow_y.tscn")
 var PointA = preload("res://scene/points/point_a.tscn")
 var PointB = preload("res://scene/points/point_b.tscn")
 var Boundary = preload("res://scene/main/boundaries/Boundary.tscn")
+var VerticalBoundary = preload("res://scene/main/boundaries/Boundary_vertical.tscn")
 # Called when the node enters the scene tree for the first time.
 var rng = RandomNumberGenerator.new()
 var last_wall_location
@@ -29,16 +30,22 @@ func _ready() -> void:
 	var viewport_height = viewport_size.y /2
 	print("WIDTH: ", viewport_width,"  Height: ",  viewport_height)
 	# Player Spawn
-	_create_spawn_point(viewport_width, viewport_height, Player)
+	_create_spawn_point(viewport_width *.25, viewport_height *.25, Player)
 
 	# Point A + B Spawn
-	_create_spawn_point(viewport_width, viewport_height, PointA)
-	_create_spawn_point(viewport_width, viewport_height, PointB)
+	_create_spawn_point(viewport_width, viewport_height * .25, PointA)
+	_create_spawn_point(viewport_width, viewport_height * .25, PointB)
 	
 	# Create Dungeon Floor && Walls
 	_create_dungeon(viewport_width/2, viewport_height/2, Floor, GroupName.DUNGEON, false)
 	_create_dungeon(viewport_width/2, viewport_height/2, Wall, GroupName.DUNGEON, true)
-	_create_horizontal_boundary()
+	
+	# Create Boundaries
+	_create_boundary(0,0, Boundary)
+	_create_boundary(0,viewport_height*.25, Boundary)
+	
+	_create_boundary(0,0, VerticalBoundary)
+	_create_boundary(viewport_width*.25,0, VerticalBoundary)
 	
 #func _process(delta: float) -> void:
 	#cooldown -= delta
@@ -47,8 +54,9 @@ func _ready() -> void:
 		#cooldown = 1.0
 	
 
-func _create_horizontal_boundary():
-	_create_sprite(Boundary, "Boundaries", 0, 0)
+func _create_boundary(x:int, y:int, prefab: PackedScene):
+	_create_sprite(prefab, "Boundaries", x, y, 100, 100)
+
 
 func _create_spawn_point(max_x: int, max_y: int, prefab: PackedScene):
 		var rand_x = rng.randf_range(0, max_x)
@@ -56,7 +64,7 @@ func _create_spawn_point(max_x: int, max_y: int, prefab: PackedScene):
 		print("spawn x   :", rand_x, " spawn y  ", rand_y)
 		spawn_point_x = rand_x
 		spawn_pont_y = rand_y
-		_create_sprite(prefab, "SpawnPoint", 0, 10, 1, 1)
+		_create_sprite(prefab, "SpawnPoint", spawn_point_x, spawn_pont_y, 1, 1)
 		
 		
 func _create_sprite(
