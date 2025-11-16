@@ -9,6 +9,14 @@ signal blue_touched
 var is_touched_red = false
 var is_touched_blue = false
 var win_screen = preload("res://GUI/win_screen.tscn").instantiate()
+var target: Node2D
+
+@onready var agent: NavigationAgent2D = $NavigationAgent2D
+@onready var path_line: Line2D = $Line2D
+
+func _ready() -> void:
+	agent.set_target_position(Global.point_b_position)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.as_text() == "Q":
@@ -40,6 +48,18 @@ func _physics_process(delta):
 	if is_touched_blue and is_touched_red:
 		win_cond.emit()
 		
-	
+
+func _process(delta):
+	agent.get_next_path_position()
+
+	# Get current path from NavigationAgent2D
+	var path = agent.get_current_navigation_path()
+	print(agent.distance_to_target())
+	print(agent.get_current_navigation_path())
+	# Draw the path with Line2D
+	if path.size() > 0:
+		path_line.points = path
+	else:
+		path_line.points = []
 	
 	

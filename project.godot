@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 run/low_processor_mode=true
 config/icon="res://resource/icon.svg"
 
+[autoload]
+
+Global="*res://scene/main/scripts/Global.gd"
+
 [display]
 
 window/size/viewport_width=800

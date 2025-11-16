@@ -33,19 +33,19 @@ func _ready() -> void:
 	_create_spawn_point(viewport_width *.25, viewport_height *.25, Player)
 
 	# Point A + B Spawn
-	_create_spawn_point(viewport_width, viewport_height * .25, PointA)
-	_create_spawn_point(viewport_width, viewport_height * .25, PointB)
+	_create_spawn_point(viewport_width, viewport_height * .25, PointA, true)
+	_create_spawn_point(viewport_width, viewport_height * .25, PointB, true)
 	
 	# Create Dungeon Floor && Walls
 	_create_dungeon(viewport_width/2, viewport_height/2, Floor, GroupName.DUNGEON, false)
 	_create_dungeon(viewport_width/2, viewport_height/2, Wall, GroupName.DUNGEON, true)
 	
 	# Create Boundaries
-	_create_boundary(0,0, Boundary)
-	_create_boundary(0,viewport_height*.25, Boundary)
-	
-	_create_boundary(0,0, VerticalBoundary)
-	_create_boundary(viewport_width*.25,0, VerticalBoundary)
+	#_create_boundary(0,0, Boundary)
+	#_create_boundary(0,viewport_height*.25, Boundary)
+	#
+	#_create_boundary(0,0, VerticalBoundary)
+	#_create_boundary(viewport_width*.25,0, VerticalBoundary)
 	
 #func _process(delta: float) -> void:
 	#cooldown -= delta
@@ -58,9 +58,14 @@ func _create_boundary(x:int, y:int, prefab: PackedScene):
 	_create_sprite(prefab, "Boundaries", x, y, 100, 100)
 
 
-func _create_spawn_point(max_x: int, max_y: int, prefab: PackedScene):
-		var rand_x = rng.randf_range(0, max_x)
-		var rand_y = rng.randf_range(0,  max_y )
+func _create_spawn_point(max_x: int, max_y: int, prefab: PackedScene, set_global = false):
+		var rand_x = 0
+		var rand_y = 0
+		if set_global:
+			if prefab == PointA:
+				Global.point_a_position = Vector2(rand_x, rand_y)
+			else:
+				Global.point_b_position = Vector2(rand_x, rand_y)
 		print("spawn x   :", rand_x, " spawn y  ", rand_y)
 		spawn_point_x = rand_x
 		spawn_pont_y = rand_y
