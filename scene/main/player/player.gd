@@ -15,7 +15,8 @@ var target: Node2D
 @onready var path_line: Line2D = $Line2D
 
 func _ready() -> void:
-	agent.set_target_position(Global.point_b_position)
+	print("POINT A POS", Global.point_a_position)
+	agent.set_target_position(Global.point_a_position)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -54,8 +55,8 @@ func _process(delta):
 
 	# Get current path from NavigationAgent2D
 	var path = agent.get_current_navigation_path()
-	print(agent.distance_to_target())
-	print(agent.get_current_navigation_path())
+	#print(agent.distance_to_target())
+	#print(agent.get_current_navigation_path())
 	# Draw the path with Line2D
 	if path.size() > 0:
 		path_line.points = path

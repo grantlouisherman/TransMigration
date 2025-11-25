@@ -13,7 +13,7 @@ var Dwarf = preload("res://sprites/dwarf.tscn")
 var ArrowX = preload("res://sprites/arrow_x.tscn")
 var ArrowY = preload("res://sprites/arrow_y.tscn")
 var PointA = preload("res://scene/points/point_a.tscn")
-var PointB = preload("res://scene/points/point_b.tscn")
+#var PointB = preload("res://scene/points/point_b.tscn")
 var Boundary = preload("res://scene/main/boundaries/Boundary.tscn")
 var VerticalBoundary = preload("res://scene/main/boundaries/Boundary_vertical.tscn")
 # Called when the node enters the scene tree for the first time.
@@ -30,15 +30,15 @@ func _ready() -> void:
 	var viewport_height = viewport_size.y /2
 	print("WIDTH: ", viewport_width,"  Height: ",  viewport_height)
 	# Player Spawn
-	_create_spawn_point(viewport_width *.25, viewport_height *.25, Player)
+	_create_spawn_point(DungeonSize.MAX_X, DungeonSize.MAX_Y, Player)
 
 	# Point A + B Spawn
-	_create_spawn_point(viewport_width, viewport_height * .25, PointA, true)
-	_create_spawn_point(viewport_width, viewport_height * .25, PointB, true)
+	_create_spawn_point(DungeonSize.MAX_X, DungeonSize.MAX_Y, PointA, true)
+	#_create_spawn_point(viewport_width, viewport_height * .25, PointB, true)
 	
 	# Create Dungeon Floor && Walls
-	_create_dungeon(viewport_width/2, viewport_height/2, Floor, GroupName.DUNGEON, false)
-	_create_dungeon(viewport_width/2, viewport_height/2, Wall, GroupName.DUNGEON, true)
+	_create_dungeon(DungeonSize.MAX_X*2, DungeonSize.MAX_Y*2, Floor, GroupName.DUNGEON, false)
+	_create_dungeon(DungeonSize.MAX_X*2, DungeonSize.MAX_Y*2, Wall, GroupName.DUNGEON, true)
 	
 	# Create Boundaries
 	#_create_boundary(0,0, Boundary)
@@ -59,13 +59,11 @@ func _create_boundary(x:int, y:int, prefab: PackedScene):
 
 
 func _create_spawn_point(max_x: int, max_y: int, prefab: PackedScene, set_global = false):
-		var rand_x = 0
-		var rand_y = 0
+		var rand_x = randi_range(0, max_x)
+		var rand_y = randi_range(0, max_y)
 		if set_global:
 			if prefab == PointA:
 				Global.point_a_position = Vector2(rand_x, rand_y)
-			else:
-				Global.point_b_position = Vector2(rand_x, rand_y)
 		print("spawn x   :", rand_x, " spawn y  ", rand_y)
 		spawn_point_x = rand_x
 		spawn_pont_y = rand_y
@@ -96,13 +94,10 @@ func _create_dungeon(width:int, height:int, prefab: PackedScene, group: String, 
 		else:
 			_create_sprite(prefab, group, xPos, yPos, 1, 1)
 		xPos+=1
-		if xPos == spawn_point_x:
-			xPos+=1
 		if xPos >= width:
 			xPos = 0
 			yPos+=1
-			if yPos == spawn_pont_y:
-				yPos+=1
+
 
 func _create_dungeon_walls():
 	#if last_wall_location == null:

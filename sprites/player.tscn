@@ -36,4 +36,5 @@ position_smoothing_enabled = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="."]
-default_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+visible = false
+default_color = Color(0.964706, 0.443137, 0.964706, 1)

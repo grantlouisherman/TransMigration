@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxex6ljv1ufox"]
+[gd_scene load_steps=5 format=3 uid="uid://bxex6ljv1ufox"]
 
 [ext_resource type="Script" path="res://scene/main/scripts/InitWorld.gd" id="1_cu24e"]
 [ext_resource type="Script" path="res://scene/main/scripts/main_scene.gd" id="1_lr2yx"]
+[ext_resource type="PackedScene" uid="uid://c4sdrgjlqomnj" path="res://mini_map.tscn" id="3_gbuya"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_67fwn"]
-vertices = PackedVector2Array(13420.8, 6276.97, 29.9688, 6247.02, 12.0234, 11.9531, 13270.2, -45.9531)
+vertices = PackedVector2Array(10193.2, 1493.26, 13412.2, 6276.95, 29.9688, 6247.02, 12.0313, 13.5625)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(2, 2, 13280, -56, 13431, 6287, 20, 6257)])
 
@@ -24,4 +25,7 @@ text = "You winnnnnnn"
 fit_content = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+scale = Vector2(8.32, 1)
 navigation_polygon = SubResource("NavigationPolygon_67fwn")
+
+[node name="CanvasNode" parent="." instance=ExtResource("3_gbuya")]
