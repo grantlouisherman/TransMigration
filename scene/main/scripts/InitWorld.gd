@@ -37,7 +37,7 @@ func _ready() -> void:
 	#_create_spawn_point(viewport_width, viewport_height * .25, PointB, true)
 	
 	# Create Dungeon Floor && Walls
-	_create_dungeon(DungeonSize.MAX_X*2, DungeonSize.MAX_Y*2, Floor, GroupName.DUNGEON, false)
+	#_create_dungeon(DungeonSize.MAX_X*2, DungeonSize.MAX_Y*2, Floor, GroupName.DUNGEON, false)
 	_create_dungeon(DungeonSize.MAX_X*2, DungeonSize.MAX_Y*2, Wall, GroupName.DUNGEON, true)
 	
 	# Create Boundaries
