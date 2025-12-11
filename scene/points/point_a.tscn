@@ -15,10 +15,10 @@ position = Vector2(15, -106)
 [node name="Red" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Red"]
-position = Vector2(576, 322)
+position = Vector2(26, 136)
 scale = Vector2(1.105, 1)
 texture = SubResource("AtlasTexture_7nuyj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
-position = Vector2(574, 328)
+position = Vector2(26, 135)
 shape = SubResource("CircleShape2D_0efx8")

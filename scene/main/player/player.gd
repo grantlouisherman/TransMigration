@@ -13,9 +13,10 @@ var target: Node2D
 
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
 @onready var path_line: Line2D = $Line2D
-
+var bounds
 func _ready() -> void:
-	print("POINT A POS", Global.point_a_position)
+	var view = get_viewport_rect()
+	bounds = Rect2(Vector2.ZERO, view.size)
 	agent.set_target_position(Global.point_a_position)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -48,6 +49,8 @@ func _physics_process(delta):
 			blue_touched.emit()
 	if is_touched_blue and is_touched_red:
 		win_cond.emit()
+	global_position.x = clamp(global_position.x, bounds.position.x, bounds.position.x + bounds.size.x)
+	global_position.y = clamp(global_position.y, bounds.position.y, bounds.position.y + bounds.size.y)
 		
 
 func _process(delta):

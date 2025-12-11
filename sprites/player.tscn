@@ -30,7 +30,6 @@ shape = SubResource("RectangleShape2D_ifg1p")
 script = ExtResource("4_h8g4v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
