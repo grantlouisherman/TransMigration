@@ -1,15 +1,22 @@
 extends Node2D
+# Signals
 signal move_walls
+signal score_update(score)
+
+# Imported Assets
 var InputName = preload("res://library/InputName.gd").new()
 var DungeonCoords = preload("res://library/DungeonSize.gd").new()
 var Dwarves = preload("res://sprites/dwarf.tscn")
 var ConvertCoord = preload("res://library/ConvertCoord.gd").new()
 var SpriteUtils = preload("res://library/SpriteUtils.gd").new()
 var PointA = preload("res://scene/points/point_a.tscn")
-var rng = RandomNumberGenerator.new()
-var p_offset_x = 100
-var p_offset_y = 50
-var mult = 10
+
+# Global Variables (Constants) 
+var RNG = RandomNumberGenerator.new()
+var SCORE_PER_POINT_TOUCH = 100
+
+# Global Variables (Mutable)
+var total_score = 0
 
 func _ready() -> void:
 	var player = get_tree().get_nodes_in_group("SpawnPoint")[0]
@@ -19,8 +26,8 @@ func _ready() -> void:
 	
 func _create_enemies():
 	for i in range(0, 1):
-		var new_x = rng.randi_range(0, DungeonCoords.MAX_X)
-		var new_y = rng.randi_range(0, DungeonCoords.MAX_Y)
+		var new_x = RNG.randi_range(0, DungeonCoords.MAX_X)
+		var new_y = RNG.randi_range(0, DungeonCoords.MAX_Y)
 		add_child(SpriteUtils._create_sprite(Dwarves, "Enemies", new_x, new_y))
 		
 func _won() -> void:
@@ -28,13 +35,15 @@ func _won() -> void:
 
 func _red_touched():
 	randomize()
+	total_score += SCORE_PER_POINT_TOUCH
+	score_update.emit(total_score)
 	var node = (get_tree().get_nodes_in_group("SpawnPoint")[1])
 	node.queue_free()
 	
 	var view = get_viewport_rect()
 	
-	var new_x = rng.randi_range(0, DungeonCoords.MAX_X)
-	var new_y = rng.randi_range(0, DungeonCoords.MAX_Y)
+	var new_x = RNG.randi_range(0, DungeonCoords.MAX_X)
+	var new_y = RNG.randi_range(0, DungeonCoords.MAX_Y)
 	add_child(SpriteUtils._create_spawn_point(new_x, new_y, PointA, true))
 	_create_enemies()
 
