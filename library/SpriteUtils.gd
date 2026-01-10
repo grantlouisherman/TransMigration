@@ -10,10 +10,8 @@ func _create_spawn_point(x: int, y: int, prefab: PackedScene, set_global = false
 	if set_global:
 		if prefab == PointA:
 			Global.point_a_position = Vector2(x, y)
-			print("spawn x   :", x, " spawn y  ", y, "PREFAB", prefab)
 		spawn_point_x = x
 		spawn_pont_y = y
-		print("SPAWWWNNNN", spawn_point_x, spawn_pont_y)
 	return _create_sprite(prefab, "SpawnPoint", spawn_point_x, spawn_pont_y, 1, 1)
 		
 		

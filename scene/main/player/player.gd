@@ -6,9 +6,9 @@ signal player_shrink
 signal player_grow
 signal player_moved
 signal player_attack(collision_id: int)
+signal item_pickup(item_name: String)
 signal win_cond
 signal red_touched
-signal blue_touched
 
 var health_points = 100
 var is_touched_red = false
@@ -71,17 +71,21 @@ func _handle_goal_touch(collision_string:String):
 	if collision_string.find("Red") != -1:
 			is_touched_red = true
 			red_touched.emit()
-			
+
+func _handle_item_pickup(collision_string: String):
+	if collision_string.find("Weapon01Body") != -1:
+		print("WEAPON PICKUP")
+
+
 func _physics_process(delta):
 	get_input()
 	var collision = move_and_slide()
 	if collision:
 		var obj = get_last_slide_collision()
 		var collision_object = obj.get_collider().to_string()
-		
 		_handle_enemy_collision(collision_object, obj.get_collider_id())
-				
 		_handle_goal_touch(collision_object)
+		_handle_item_pickup(collision_object)
 		
 	if is_touched_red:
 		win_cond.emit()

@@ -2,20 +2,24 @@ extends Node2D
 
 signal sprite_created(new_sprite: Sprite2D)
 
+#  Util Resources
 var ConvertCoord = preload("res://library/ConvertCoord.gd").new()
 var GroupName = preload("res://library/GroupName.gd").new()
 var Main = preload("res://scene/main/scripts/main_scene.gd").new()
 var DungeonSize = preload("res://library/DungeonSize.gd").new()
-var Player = preload("res://sprites/player.tscn")
+var SpriteUtils = preload("res://library/SpriteUtils.gd").new()
+
+#  Dungeon Scenes
 var Wall = preload("res://sprites/wall.tscn")
 var Floor = preload("res://sprites/floor.tscn")
-var ArrowX = preload("res://sprites/arrow_x.tscn")
-var ArrowY = preload("res://sprites/arrow_y.tscn")
-var PointA = preload("res://scene/points/point_a.tscn")
-#var PointB = preload("res://scene/points/point_b.tscn")
 var Boundary = preload("res://scene/main/boundaries/Boundary.tscn")
 var VerticalBoundary = preload("res://scene/main/boundaries/Boundary_vertical.tscn")
-var SpriteUtils = preload("res://library/SpriteUtils.gd").new()
+
+# Play Objects
+var Player = preload("res://sprites/player.tscn")
+var PointA = preload("res://scene/points/point_a.tscn")
+var Weapon01 = preload("res://scene/main/items/weapon_01.tscn")
+
 # Called when the node enters the scene tree for the first time.
 var rng = RandomNumberGenerator.new()
 var last_wall_location
@@ -47,13 +51,16 @@ func _ready() -> void:
 	var bound_y = bounds.size.y
 	var rand_x = randf_range(bounds.position.x, bounds.position.x + bounds.size.x)
 	var rand_y = randf_range(bounds.position.y, bounds.position.y + bounds.size.y)
-	prints("OG BOUNDS ____+++++>>>>", bounds)
+	
 	# Player Spawn
 	var player = SpriteUtils._create_spawn_point(DungeonSize.CENTER_X, DungeonSize.CENTER_Y, Player)
 	add_child(player)
 	# Point A + B Spawn
 	var point_a = SpriteUtils._create_spawn_point(0, 0, PointA, true)
 	add_child(point_a)
+	# Initial Weapon
+	var weapon01 = SpriteUtils._create_spawn_point(DungeonSize.CENTER_X, DungeonSize.CENTER_Y, Weapon01)
+	add_child(weapon01)
 	
 	# Create Dungeon Floor && Walls
 	#_create_dungeon(DungeonSize.MAX_X*2, DungeonSize.MAX_Y*2, Floor, GroupName.DUNGEON, false)
