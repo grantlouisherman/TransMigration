@@ -1,5 +1,6 @@
 ## TODO
 
+TrelloBoard: https://trello.com/b/uJK74kO5/transmigration
 ### MVP:
 * ~Autospawn environment, i.e boundaries, points, player, etc~
 * ~Get points re-spawn after both are touched~
@@ -7,7 +8,7 @@
 * ~Spawned enemies move around~
 * ~player attack enemies~
 * ~player looses health with enemy collision~
-* Point progression - every touch is 100 points
+* ~Point progression - every touch is 100 points~
 * Weapons equip - sword +5 attack power
 * Weapon decay - 5 uses
 * Armor equip - dulls health lose to 1
