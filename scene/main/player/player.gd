@@ -69,12 +69,11 @@ func _handle_enemy_collision(collision_string: String, collider_id: int):
 
 func _handle_goal_touch(collision_string:String):
 	if collision_string.find("Red") != -1:
-			is_touched_red = true
 			red_touched.emit()
 
 func _handle_item_pickup(collision_string: String):
 	if collision_string.find("Weapon01Body") != -1:
-		print("WEAPON PICKUP")
+		pass
 
 
 func _physics_process(delta):
@@ -87,12 +86,9 @@ func _physics_process(delta):
 		_handle_goal_touch(collision_object)
 		_handle_item_pickup(collision_object)
 		
-	if is_touched_red:
-		win_cond.emit()
-	global_position.x = clamp(global_position.x, bounds.position.x, bounds.position.x + bounds.size.x)
-	global_position.y = clamp(global_position.y, bounds.position.y, bounds.position.y + bounds.size.y)
+	#global_position.x = clamp(global_position.x, bounds.position.x, bounds.position.x + bounds.size.x)
+	#global_position.y = clamp(global_position.y, bounds.position.y, bounds.position.y + bounds.size.y)
 	is_player_attacking = false
-	is_touched_red = false
 		
 
 func _process(delta):

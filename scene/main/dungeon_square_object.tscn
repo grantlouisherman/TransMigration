@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceqpbuah0m4xw"]
+
+[ext_resource type="Script" path="res://scene/main/dungeon_square_object.gd" id="1_ko42t"]
+
+[node name="DugeonSquareObject" type="Node2D"]
+script = ExtResource("1_ko42t")

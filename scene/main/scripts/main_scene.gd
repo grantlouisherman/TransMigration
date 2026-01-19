@@ -56,7 +56,9 @@ func _player_attack(collision_id: int) -> void:
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	for enemy in enemies:
 		if enemy.get_instance_id() == collision_id:
-			enemy.queue_free()
+			var health_bar = enemy._handle_taken_damage()
+			if health_bar == 0:
+				enemy.queue_free()
 
 func _handle_item_pickup(item: String) -> void:
 	# TODO classify item

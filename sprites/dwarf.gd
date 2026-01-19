@@ -7,6 +7,9 @@ signal player_collision
 var _direction: Vector2 = Vector2.ZERO
 var _time_until_change := 0.0
 var bounds
+@export var health = 100
+
+
 func _ready() -> void:
 	var view = get_viewport_rect()
 	bounds = Rect2(Vector2.ZERO, view.size)
@@ -30,3 +33,7 @@ func _physics_process(delta):
 			player_collision.emit()
 	global_position.x = clamp(global_position.x, bounds.position.x, bounds.position.x + bounds.size.x)
 	global_position.y = clamp(global_position.y, bounds.position.y, bounds.position.y + bounds.size.y)
+
+func _handle_taken_damage() -> int:
+	health-=10
+	return health

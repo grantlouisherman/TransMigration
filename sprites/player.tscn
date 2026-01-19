@@ -7,10 +7,10 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0h0rb"]
 atlas = ExtResource("2_w503y")
-region = Rect2(192, 0, 24, 40)
+region = Rect2(48, 0, 24, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifg1p"]
-size = Vector2(42, 53)
+size = Vector2(31, 33)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(18, 23)
@@ -21,11 +21,13 @@ platform_wall_layers = 1
 script = ExtResource("1_phn8e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(1, 0.8125)
 texture = SubResource("AtlasTexture_0h0rb")
 script = ExtResource("3_f3hh4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
+position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_ifg1p")
 script = ExtResource("4_h8g4v")
 

@@ -14,7 +14,7 @@ var Wall = preload("res://sprites/wall.tscn")
 var Floor = preload("res://sprites/floor.tscn")
 var Boundary = preload("res://scene/main/boundaries/Boundary.tscn")
 var VerticalBoundary = preload("res://scene/main/boundaries/Boundary_vertical.tscn")
-
+var DungeonSquareObject = preload("res://scene/main/dungeon_square_object.tscn")
 # Play Objects
 var Player = preload("res://sprites/player.tscn")
 var PointA = preload("res://scene/points/point_a.tscn")
@@ -29,9 +29,7 @@ var cooldown = 1.0
 var tile_size = 32
 
 
-func _draw():
-	var rect =  get_viewport_rect()
-	draw_rect(rect, Color.BLACK, false, 2.0)
+
 
 func _ready() -> void:
 	var view_size = get_viewport_rect()
@@ -44,7 +42,7 @@ func _ready() -> void:
 	var grid_width = DungeonSize.WIDTH
 	var grid_height = DungeonSize.HEIGHT
 	
-	print("WIDTH: ", viewport_width,"  Height: ",  viewport_height)
+	
 	var view = get_viewport_rect()
 	var bounds = Rect2(Vector2.ZERO, view.size)
 	var bound_x = bounds.size.x
@@ -62,9 +60,12 @@ func _ready() -> void:
 	var weapon01 = SpriteUtils._create_spawn_point(DungeonSize.CENTER_X, DungeonSize.CENTER_Y, Weapon01)
 	add_child(weapon01)
 	
-	# Create Dungeon Floor && Walls
-	#_create_dungeon(DungeonSize.MAX_X*2, DungeonSize.MAX_Y*2, Floor, GroupName.DUNGEON, false)
-	_create_dungeon(grid_width, grid_height, Wall, GroupName.DUNGEON, true)
+	var dq = DungeonSquareObject.instantiate()
+	var dq2 = DungeonSquareObject.instantiate()
+	dq.create_dungeon_square(0,0)
+	add_child(dq)
+	dq2.create_dungeon_square(0,641)
+	add_child(dq2)
 	
 	
 #func _process(delta: float) -> void:
@@ -76,22 +77,6 @@ func _ready() -> void:
 
 func _create_boundary(x:int, y:int, prefab: PackedScene):
 	add_child(SpriteUtils._create_sprite(prefab, "Boundaries", x, y, 100, 100))
-
-
-func _create_dungeon(width:int, height:int, prefab: PackedScene, group: String, doRandom: bool):
-	var xPos = 0
-	var yPos = 0
-	while yPos < height:
-		var rand_number = rng.randi_range(0,5)
-		if doRandom:
-			if rand_number == 1:
-				add_child(SpriteUtils._create_sprite(prefab, group, xPos, yPos, 1, 1))
-		else:
-			add_child(SpriteUtils._create_sprite(prefab, group, xPos, yPos, 1, 1))
-		xPos+=1
-		if xPos >= width:
-			xPos = 0
-			yPos+=1
 
 
 func _create_dungeon_walls():
